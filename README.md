@@ -20,3 +20,16 @@ This is the first attempt at getting the thing actually working without an LPT p
 
 ### spitlpt.arduino.offload ###
 This should be the final product, a dll that offloads most of the work to the arduino to speed things up.
+
+
+# Added/Modified by Nippey #
+## Goals ##
+Trying to add support for FTDI's FT232R USB-2-UART converter. This chip features a BitBang-mode which enables reading and changing eight of it's pins individually.
+
+### spilpt.forwarder.fixed ###
+The original forwarder-DLL loads additional DLLs during the execution of the DllMain-Function. This is not permitted following microsofts guidelines and may end in an error-message! This modification loads the forwarded DLL on the first call of another function than DllMain.
+Another feature added is an INI-file to configure the behaviour of the forwarder.
+
+### spilpt.ftdi ###
+This is the first try to make the FT232R work as I wish. It is already posssible to extract some information from the bluetooth module, but it takes a long time! Reading/Writing the firmware is not possible.
+At the moment I can't make any progress, as I have no working LPT-port which could give me reference signals.
